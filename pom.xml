@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.ctoolkit.maven</groupId>
@@ -9,7 +8,7 @@
 
     <groupId>org.ctoolkit.api</groupId>
     <artifactId>ctoolkit-agent-gen-lib</artifactId>
-    <version>v1-1.22.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>CtoolkiT Agent Client generated lib</name>
     <description>Generated Google client library for Cloud Toolkit Migration Agent REST API</description>
     <packaging>jar</packaging>
@@ -20,7 +19,7 @@
         <connection>scm:git:[fetch=]git@github.com:turnonline/ctoolkit-agent-gen-lib.git</connection>
         <developerConnection>scm:git:[push=]git@github.com:turnonline/ctoolkit-agent-gen-lib.git</developerConnection>
         <url>https://github.com/turnonline/ctoolkit-agent-gen-lib</url>
-        <tag>HEAD</tag>
+        <tag>ctoolkit-agent-gen-lib-1.0</tag>
     </scm>
 
     <organization>
