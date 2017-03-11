@@ -16,6 +16,13 @@
 
     <inceptionYear>2011</inceptionYear>
 
+    <scm>
+        <connection>scm:git:[fetch=]git@github.com:turnonline/ctoolkit-agent-gen-lib.git</connection>
+        <developerConnection>scm:git:[push=]git@github.com:turnonline/ctoolkit-agent-gen-lib.git</developerConnection>
+        <url>https://github.com/turnonline/ctoolkit-agent-gen-lib</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <organization>
         <name>Comvai, s.r.o.</name>
     </organization>
