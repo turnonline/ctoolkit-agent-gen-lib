@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ctoolkit-agent-gen-lib-parent</artifactId>
+        <groupId>org.ctoolkit.api</groupId>
+        <version>1.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>war</packaging>
+
+    <artifactId>ctoolkit-agent-gen-lib-stub</artifactId>
+    <name>CtoolkiT Agent stub</name>
+    <description>The CtoolkiT Agent Stub in order to generate Google API client for CtoolkiT Agent api</description>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.endpoints</groupId>
+            <artifactId>endpoints-framework</artifactId>
+            <version>${endpoints.framework.version}</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-nop</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>1.7.22</version>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <!--build OpenAPI document openapi.json 'mvn exec:java -P api' -->
+            <id>api</id>
+            <activation>
+                <property>
+                    <name>get-openapi-doc</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.4.0</version>
+                        <configuration>
+                            <includePluginDependencies>true</includePluginDependencies>
+                            <mainClass>com.google.api.server.spi.tools.EndpointsTool</mainClass>
+                            <arguments>
+                                <argument>get-openapi-doc</argument>
+                                <argument>--output=target/openapi.json</argument>
+                                <argument>--hostname=${endpoints.service.name}</argument>
+                                <argument>--war=target/${project.build.finalName}</argument>
+                                <argument>org.ctoolkit.agent.rest.AuditEndpoint</argument>
+                                <argument>org.ctoolkit.agent.rest.ExportEndpoint</argument>
+                                <argument>org.ctoolkit.agent.rest.ImportEndpoint</argument>
+                                <argument>org.ctoolkit.agent.rest.MigrationEndpoint</argument>
+                                <argument>org.ctoolkit.agent.rest.MetadataEndpoint</argument>
+                            </arguments>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.google.endpoints</groupId>
+                                <artifactId>endpoints-framework-tools</artifactId>
+                                <version>${endpoints.framework.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!--build api client as maven source 'mvn exec:java -P client' -->
+            <id>client</id>
+            <activation>
+                <property>
+                    <name>get-client-lib</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.4.0</version>
+                        <configuration>
+                            <includePluginDependencies>true</includePluginDependencies>
+                            <mainClass>com.google.api.server.spi.tools.EndpointsTool</mainClass>
+                            <arguments>
+                                <argument>get-client-lib</argument>
+                                <argument>--war=target/${project.build.finalName}</argument>
+                                <argument>--build-system=maven</argument>
+                                <argument>--output=target</argument>
+                                <argument>org.ctoolkit.agent.rest.AuditEndpoint</argument>
+                                <argument>org.ctoolkit.agent.rest.ExportEndpoint</argument>
+                                <argument>org.ctoolkit.agent.rest.ImportEndpoint</argument>
+                                <argument>org.ctoolkit.agent.rest.MigrationEndpoint</argument>
+                                <argument>org.ctoolkit.agent.rest.MetadataEndpoint</argument>
+                            </arguments>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.google.endpoints</groupId>
+                                <artifactId>endpoints-framework-tools</artifactId>
+                                <version>${endpoints.framework.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <properties>
+        <endpoints.framework.version>2.0.7</endpoints.framework.version>
+        <endpoints.service.name>agent</endpoints.service.name>
+    </properties>
+</project>

@@ -1,5 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.ctoolkit.maven</groupId>
         <artifactId>ctoolkit-public</artifactId>
@@ -7,11 +8,16 @@
     </parent>
 
     <groupId>org.ctoolkit.api</groupId>
-    <artifactId>ctoolkit-agent-gen-lib</artifactId>
+    <artifactId>ctoolkit-agent-gen-lib-parent</artifactId>
     <version>1.1-SNAPSHOT</version>
-    <name>CtoolkiT Agent Client generated lib</name>
-    <description>Generated Google client library for Cloud Toolkit Migration Agent REST API</description>
-    <packaging>jar</packaging>
+    <name>CtoolkiT Agent Client parent</name>
+    <description>Generated Google client library and endpoint sources for Cloud Toolkit Migration Agent REST API</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>client</module>
+        <module>stub</module>
+    </modules>
 
     <inceptionYear>2011</inceptionYear>
 
@@ -45,18 +51,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.3.1</version>
-                <configuration>
-                    <archive>
-                        <manifestEntries>
-                            <Built-By>Google</Built-By>
-                            <Build-Jdk>1.6.x</Build-Jdk>
-                        </manifestEntries>
-                    </archive>
-                </configuration>
-            </plugin>
-            <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.7</version>
                 <configuration>
@@ -76,14 +70,6 @@
         </plugins>
         <sourceDirectory>src/main/java</sourceDirectory>
     </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.google.api-client</groupId>
-            <artifactId>google-api-client</artifactId>
-            <version>1.22.0</version>
-        </dependency>
-    </dependencies>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
