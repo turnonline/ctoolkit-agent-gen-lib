@@ -9,7 +9,7 @@
 
     <groupId>org.ctoolkit.api</groupId>
     <artifactId>ctoolkit-agent-gen-lib-parent</artifactId>
-    <version>1.2-SNAPSHOT</version>
+    <version>1.2</version>
     <name>CtoolkiT Agent Client parent</name>
     <description>Generated Google client library and endpoint sources for Cloud Toolkit Migration Agent REST API</description>
     <packaging>pom</packaging>
@@ -20,7 +20,7 @@
         <connection>scm:git:[fetch=]git@github.com:turnonline/ctoolkit-agent-gen-lib.git</connection>
         <developerConnection>scm:git:[push=]git@github.com:turnonline/ctoolkit-agent-gen-lib.git</developerConnection>
         <url>https://github.com/turnonline/ctoolkit-agent-gen-lib</url>
-        <tag>HEAD</tag>
+        <tag>ctoolkit-agent-gen-lib-parent-1.2</tag>
     </scm>
 
     <organization>
