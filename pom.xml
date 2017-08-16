@@ -14,11 +14,6 @@
     <description>Generated Google client library and endpoint sources for Cloud Toolkit Migration Agent REST API</description>
     <packaging>pom</packaging>
 
-    <modules>
-        <module>client</module>
-        <module>stub</module>
-    </modules>
-
     <inceptionYear>2011</inceptionYear>
 
     <scm>
@@ -71,7 +66,27 @@
         <sourceDirectory>src/main/java</sourceDirectory>
     </build>
 
+    <profiles>
+        <profile>
+            <id>client-only</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>client</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>stub</id>
+            <modules>
+                <module>client</module>
+                <module>stub</module>
+            </modules>
+        </profile>
+    </profiles>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
 </project>

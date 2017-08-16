@@ -2,14 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <parent>
-        <groupId>org.ctoolkit.api</groupId>
-        <artifactId>ctoolkit-agent-gen-lib-parent</artifactId>
-        <version>1.2-SNAPSHOT</version>
+        <groupId>org.ctoolkit.maven</groupId>
+        <artifactId>ctoolkit-public</artifactId>
+        <version>1</version>
     </parent>
+
+    <groupId>org.ctoolkit.api</groupId>
+    <artifactId>ctoolkit-agent-gen-lib</artifactId>
+    <version>1.2-SNAPSHOT</version>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ctoolkit-agent-gen-lib</artifactId>
     <name>CtoolkiT Agent Client generated lib</name>
     <description>Generated Google client library for Cloud Toolkit Migration Agent REST API</description>
 
@@ -37,5 +41,20 @@
             <version>1.22.0</version>
         </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>for-release</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <properties>
+                <maven.deploy.skip>false</maven.deploy.skip>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>
